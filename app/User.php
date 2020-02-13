@@ -26,4 +26,23 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    ////return all friends of current loggedIN user
+    public function friendsOfMine()
+    {
+        return $this->belongsToMany('App\User', 'friends', 'user_id', 'friend_id');//fourth one foreign key
+    }
+
+
+    ////all the users requested me as their friend
+    public function friendOf()
+    {
+        return $this->belongsToMany('App\User', 'friends', 'friend_id', 'user_id');//fourth one foreign key
+    }
+
+    //// no duplicate values
+    public function friends()
+    {
+        return $this->friendsOfMine->merge($this->friendOf);
+    }
 }
