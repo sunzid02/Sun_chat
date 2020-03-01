@@ -20,6 +20,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/friends', 'FriendController@index')->name('friend.index');
+    Route::get('/chat', 'ChatController@index')->name('chat.index');
+    Route::get('/chat/{id}', 'ChatController@show')->name('chat.show');
+    
+    Route::post('/chat/get-chat/{id}', 'ChatController@getChat')->name('chat.getChat');
+    
 
 });

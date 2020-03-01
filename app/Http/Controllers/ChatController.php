@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Friend;
+use App\Chat;
+use App\User;
 use Illuminate\Http\Request;
+use App\Friend;
+
 use Auth;
 
-class FriendController extends Controller
+class ChatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +18,11 @@ class FriendController extends Controller
      */
     public function index()
     {
-        // $friends = Auth::user()->friends();
+        $friends = Auth::user()->friends();
 
-        // return view('friend.index', [
-        //     'friends' => $friends,
-        // ]);
+        return view('chat.index', [
+            'friends' => $friends,
+        ]);
     }
 
     /**
@@ -46,21 +49,26 @@ class FriendController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Friend  $friend
+     * @param  \App\Chat  $chat
      * @return \Illuminate\Http\Response
      */
-    public function show(Friend $friend)
+    public function show( Request $request )
     {
-        //
+        $friendId = $request->id;
+        $friend = User::find($friendId);
+        
+        return view('chat.show',[
+            'friend' => $friend,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Friend  $friend
+     * @param  \App\Chat  $chat
      * @return \Illuminate\Http\Response
      */
-    public function edit(Friend $friend)
+    public function edit(Chat $chat)
     {
         //
     }
@@ -69,10 +77,10 @@ class FriendController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Friend  $friend
+     * @param  \App\Chat  $chat
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Friend $friend)
+    public function update(Request $request, Chat $chat)
     {
         //
     }
@@ -80,11 +88,27 @@ class FriendController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Friend  $friend
+     * @param  \App\Chat  $chat
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Friend $friend)
+    public function destroy(Chat $chat)
     {
         //
+    }
+
+    public function getChat( Request $request )
+    {
+       $friendId = $request->id; 
+       
+       ////get all chat data between two users
+       $chats = Chat::where( function($query) use ($friendId){
+            $query->where('user_id', '=', Auth::user()->id )->where('friend_id', '=', $friendId );
+       })->orWhere(  function($query) use ($friendId)
+       {
+            $query->where('user_id', '=', $friendId )->where('friend_id', '=', Auth::user()->id );
+
+       })->get();
+
+       return $chats;
     }
 }

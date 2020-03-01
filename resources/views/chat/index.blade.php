@@ -11,7 +11,10 @@
 
                     @forelse ($friends as $friend)
                         <div class="panel-block">
-                            {{ $friend->name}}</h3><hr>
+                            <a href="{{ route('chat.show', $friend->id) }}" class="panel"> 
+                                {{ $friend->name}} 
+                            </a>
+                           
 
                         </div>
                     @empty
