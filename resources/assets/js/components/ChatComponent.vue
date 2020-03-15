@@ -9,7 +9,7 @@
         padding: 20px;
         box-shadow: inset 0 0 20px 0 blue;
         margin-bottom: 20px;
-        border: 1px solid grey;
+        border: 1px solid blue;
         max-height: 600px;
         overflow-x: auto;
     }
@@ -56,6 +56,12 @@
         <div class="no-message" v-else>
             There are no messages
         </div>
+        <chat-composer 
+            v-bind:userid="userid"
+            v-bind:chats="chats"
+            v-bind:friendid="friendid"
+        >
+        </chat-composer>
     </div>
 </template>
 
