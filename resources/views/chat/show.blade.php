@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+        <audio id="ChatAudio">
+            <source src="{{ asset('sounds/me-too.mp3') }}">
+        </audio>
         <meta name="friendId" content="{{ $friend->id }}"> 
        <div class="container">
             <div class="col is-8 is-offset-2">

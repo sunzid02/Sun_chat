@@ -31,7 +31,14 @@ const app = new Vue({
         if ( friendId != undefined) {
             axios.post('/chat/get-chat/' + friendId).then( ( response ) => {
                 this.chats = response.data
-            })
+            });
+
+
+            Echo.private('Chat.' + friendId + '.' + userId)
+            .listen('BroadcastChat', (e) => {
+                document.getElementById('ChatAudio').play();
+                this.chats.push(e.chat);
+            });
         }
     }
 });

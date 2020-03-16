@@ -55758,6 +55758,11 @@ var app = new Vue({
       axios.post('/chat/get-chat/' + friendId).then(function (response) {
         _this.chats = response.data;
       });
+      Echo["private"]('Chat.' + friendId + '.' + userId).listen('BroadcastChat', function (e) {
+        document.getElementById('ChatAudio').play();
+
+        _this.chats.push(e.chat);
+      });
     }
   }
 });
