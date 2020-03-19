@@ -15,6 +15,23 @@
                     @endif
 
                     You are logged in!
+
+                    <br>
+                    <a href="{{ route('chat.index') }}">
+                        <h4> Go to Chat </h4>
+                    </a>
+
+                    
+                    <br>
+                    <a href="{{ route('chat.allChatMessage') }}">
+                        <h4> All chat messages </h4>
+                    </a>
+
+                    <br>
+                    <a href="{{ route('product.create') }}">
+                        <h4> Add Product </h4>
+                    </a>
+
                 </div>
             </div>
         </div>

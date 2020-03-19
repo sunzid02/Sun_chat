@@ -10,18 +10,23 @@
 
 
                     @forelse ($friends as $friend)
-                        <div class="panel-block">
-                            <a href="{{ route('chat.show', $friend->id) }}" class="panel"> 
-                                {{ $friend->name}} 
-                            </a>
-                           
 
-                        </div>
+                            <a href="{{ route('chat.show', $friend->id) }}" class="panel"> 
+                               <ul class="list-group">
+                                   <li class="list-group-item"> {{ $friend->name}} </li>
+
+                               </ul>
+
+                            </a>                        
+
                     @empty
                         <div class="panel-block">
                             You don't have any friends
                         </div>
                     @endforelse
+
+
+
                 </div>
             </div>
         </div> 

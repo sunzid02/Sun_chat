@@ -20,7 +20,7 @@
 
 <!-- Latest compiled and minified JavaScript -->
 {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>     --}}
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> --}}
 </head>
 <body>
@@ -82,6 +82,17 @@
         </nav>
 
         @yield('content')
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <br>
+                <a href="{{ route('home') }}">
+                    <h4> Back to Dashboard </h4>
+                </a>                
+            </div>
+            <div class="col-md-4"></div>
+        </div>
     </div>
 
     <!-- Scripts -->

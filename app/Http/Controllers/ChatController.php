@@ -124,4 +124,18 @@ class ChatController extends Controller
 
         return [];
     }
+
+    public function allChatMessage( Request $request )
+    {
+       $chats = Chat::all();
+
+    //    print($chats);
+    //    die();
+
+       return view('chat.all_chat_message', [
+           'chats' => $chats,
+       ]);
+    }
+
+    
 }
